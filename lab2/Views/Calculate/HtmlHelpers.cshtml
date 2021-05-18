@@ -1,0 +1,19 @@
+﻿@model lab2.Models.CalcModel
+@{
+    var action = ViewContext.RouteData.Values["Action"] as string;
+    ViewBag.Title = action;
+    var operation = new SelectList(new[] { "+", "-", "*", "/" });
+    var controller = ViewContext.RouteData.Values["Controller"] as string;
+
+}
+<h1>@action</h1>
+@using (Html.BeginForm(action, controller, FormMethod.Post))
+{
+    @Html.TextBox("a", "")
+    <br />
+    @Html.DropDownList("operation", operation)
+    <br />
+    @Html.TextBox("b", "")
+    <br />
+    <button type="submit">Submit</button>
+}
